@@ -29,6 +29,8 @@ class PipelineSpockTestBase extends Specification {
         helper.registerAllowedMethod("ansiColor", [String, Closure], { String color, Closure block -> 
           block ()
         })
+        helper.registerAllowedMethod('configFile', [Map.class], { 'OK' })
+        helper.registerAllowedMethod('configFileProvider', [List.class, Closure.class], { l, body -> body() })
       }
     }
     basePipelineTest.setUp()

@@ -14,11 +14,13 @@ class CompileProjectSpec extends PipelineSpockTestBase {
         gitBranch: 'master'
     ]
     IContext context = new Context(config)
-    Map empty = [:]
+    def configuration = [
+            configFileId: 'abcd'
+    ]
 
     when:
     def script = loadScript('vars/compileProject.groovy')
-    script.call(context, empty)
+    script.call(context, configuration)
 
     then:
     printCallStack()

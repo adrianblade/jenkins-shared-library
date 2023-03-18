@@ -13,7 +13,7 @@ class Gradle implements Serializable, Compiler {
             stageName : 'Build',
             closure   : {
                 runWithTemplateSetup(command: args.command, configFileId: args.configFileId)
-                script.stash includes: script.outputFolders.build, name: 'build', allowEmpty: true
+                script.stash includes: 'buildFolder', name: 'build', allowEmpty: true
             },
             whenBranch: args.whenBranch
         ]
@@ -25,7 +25,7 @@ class Gradle implements Serializable, Compiler {
             closure   : {
                 script.unstash 'build'
                 runWithTemplateSetup(command: args.command, configFileId: args.configFileId)
-                script.stash includes: script.outputFolders.test, name: 'unit-tests', allowEmpty: true
+                script.stash includes: 'testFolder', name: 'unit-tests', allowEmpty: true
             },
             whenBranch: args.whenBranch,
             post      : { script.junit script.outputFolders.test }
@@ -38,7 +38,7 @@ class Gradle implements Serializable, Compiler {
             closure   : {
                 script.unstash 'build'
                 runWithTemplateSetup(command: args.command, configFileId: args.configFileId)
-                script.stash includes: script.outputFolders.integration, name: 'integration-tests', allowEmpty: true
+                script.stash includes: 'integrationFolder', name: 'integration-tests', allowEmpty: true
             },
             whenBranch: args.whenBranch,
             post      : { script.junit script.outputFolders.integration }
