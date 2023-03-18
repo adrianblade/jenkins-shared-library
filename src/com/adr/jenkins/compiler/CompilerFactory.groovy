@@ -1,7 +1,7 @@
 package com.adr.jenkins.compiler
 
-class TaskAutomationFactory {
-    static TaskAutomationTool "for"(def type, def script) {
+class CompilerFactory {
+    static Compiler "for"(def type, def script) {
         switch (type) {
             case 'maven':
                 return new Maven(script)

@@ -1,6 +1,6 @@
 package com.adr.jenkins.compiler
 
-class Maven implements Serializable, TaskAutomationTool {
+class Maven implements Serializable, Compiler {
 
     private final def script
 

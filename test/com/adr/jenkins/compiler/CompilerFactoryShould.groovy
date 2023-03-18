@@ -3,7 +3,7 @@ package com.adr.jenkins.compiler
 import mocks.PipelineScript
 import spock.lang.Specification
 
-class TaskAutomationFactoryShould extends Specification {
+class CompilerFactoryShould extends Specification {
 
     private def script
 
@@ -13,7 +13,7 @@ class TaskAutomationFactoryShould extends Specification {
 
     def 'returns maven tool when type provided is maven'() {
         when:
-        def tool = TaskAutomationFactory.for('maven', script)
+        def tool = CompilerFactory.for('maven', script)
 
         then:
         tool.getClass() == Maven
@@ -21,7 +21,7 @@ class TaskAutomationFactoryShould extends Specification {
 
     def 'returns gradle tool when type provided is gradle'() {
         when:
-        def tool = TaskAutomationFactory.for('gradle', script)
+        def tool = CompilerFactory.for('gradle', script)
 
         then:
         tool.getClass() == Gradle

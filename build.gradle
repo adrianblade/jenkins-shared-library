@@ -7,10 +7,15 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.jenkins-ci.org/releases/' }
 }
 
 dependencies {
     implementation 'org.apache.groovy:groovy:4.0.2'
+    implementation "com.cloudbees:groovy-cps:1.29"
+    implementation "org.codehaus.groovy:groovy-all:2.4.21"
+
+    testImplementation 'com.lesfurets:jenkins-pipeline-unit:1.9' // "com.lesfurets:jenkins-pipeline-unit:1.9"
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
     testImplementation 'net.bytebuddy:byte-buddy:1.12.22'
 }

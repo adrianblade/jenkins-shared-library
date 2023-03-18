@@ -1,6 +1,6 @@
 package com.adr.jenkins.compiler
 
-class Gradle implements Serializable, TaskAutomationTool {
+class Gradle implements Serializable, Compiler {
 
     private final def script
 
