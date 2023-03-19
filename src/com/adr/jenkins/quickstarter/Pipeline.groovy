@@ -111,7 +111,7 @@ class Pipeline implements Serializable {
             if (!config.image) {
                 config.image = "${config.dockerRegistry}/${config.imageStreamTag}"
             }
-            config.podContainers = [
+            /*config.podContainers = [
                 script.containerTemplate(
                     name: 'jnlp',
                     image: config.image,
@@ -123,12 +123,12 @@ class Pipeline implements Serializable {
                     resourceLimitCpu: config.resourceLimitCpu,
                     args: ''
                 )
-            ]
+            ]*/
         }
 
         def podLabel = "qs-${UUID.randomUUID()}"
 
-        script.podTemplate(
+        /*script.podTemplate(
             label: podLabel,
             cloud: 'kubernetes',
             containers: config.podContainers,
@@ -140,7 +140,7 @@ class Pipeline implements Serializable {
                 IContext context = new Context(config)
                 block(context)
             }
-        }
+        }*/
     }
 
 }
