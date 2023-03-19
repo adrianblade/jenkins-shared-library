@@ -6,10 +6,19 @@ class CheckoutStage extends Stage {
 
     CheckoutStage(def script, IContext context, Map config = [:]) {
         super(script, context, config)
+
+        checkout([
+            $class: 'GitSCM', 
+            branches: [[name: '*/master']], 
+            doGenerateSubmoduleConfigurations: false, 
+            extensions: [[$class: 'CleanCheckout']], 
+            submoduleCfg: [], 
+            userRemoteConfigs: [[url: config.gitUrlHttp]]
+        ])
     }
 
     def run() {
-        script.checkout script.scm
+        script.checkout
     }
 
 }

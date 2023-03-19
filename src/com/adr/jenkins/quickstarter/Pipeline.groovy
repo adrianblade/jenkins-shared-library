@@ -25,7 +25,7 @@ class Pipeline implements Serializable {
         config.sharedLibraryRef = script.env.SHARED_LIBRARY_REF ?: config.imageTag
         //config.projectId = script.env.PROJECT_ID.toLowerCase()
         //config.componentId = script.env.COMPONENT_ID.toLowerCase()
-        config.gitUrlHttp = script.env.GIT_URL_HTTP
+        config.gitUrlHttp = script.env.GIT_URL_HTTP ?: config.gitUrlHttp
         config.packageName = script.env.PACKAGE_NAME
         config.group = script.env.GROUP_ID
         config.openShiftProject = "${config.projectId}-cd"
