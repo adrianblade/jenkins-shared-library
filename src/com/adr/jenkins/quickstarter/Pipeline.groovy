@@ -19,13 +19,12 @@ class Pipeline implements Serializable {
     def execute(Closure block) {
         // build params
         //checkRequiredBuildParams()
-        config.odsNamespace = script.env.ODS_NAMESPACE ?: 'ods'
-        config.odsImageTag = script.env.ODS_IMAGE_TAG ?: 'latest'
-        config.odsGitRef = script.env.ODS_GIT_REF ?: 'master'
-        config.agentImageTag = script.env.AGENT_IMAGE_TAG ?: config.odsImageTag
-        config.sharedLibraryRef = script.env.SHARED_LIBRARY_REF ?: config.odsImageTag
-        config.projectId = script.env.PROJECT_ID.toLowerCase()
-        config.componentId = script.env.COMPONENT_ID.toLowerCase()
+        config.imageTag = script.env.IMAGE_TAG ?: 'latest'
+        config.gitRef = script.env.GIT_REF ?: 'main'
+        config.agentImageTag = script.env.AGENT_IMAGE_TAG ?: config.imageTag
+        config.sharedLibraryRef = script.env.SHARED_LIBRARY_REF ?: config.imageTag
+        //config.projectId = script.env.PROJECT_ID.toLowerCase()
+        //config.componentId = script.env.COMPONENT_ID.toLowerCase()
         config.gitUrlHttp = script.env.GIT_URL_HTTP
         config.packageName = script.env.PACKAGE_NAME
         config.group = script.env.GROUP_ID
@@ -44,9 +43,6 @@ class Pipeline implements Serializable {
         }
         if (!config.image && !config.imageStreamTag && !config.podContainers) {
             script.error "One of 'image', 'imageStreamTag' or 'podContainers' is required but not given!"
-        }
-        if (!config.cdUserCredentialsId) {
-            config.cdUserCredentialsId = "${config.openShiftProject}-cd-user-with-password"
         }
         if (!config.targetDir) {
             // Use componentId as some build tools (e.g. sbt) need to work in a directory
@@ -133,7 +129,7 @@ class Pipeline implements Serializable {
 
         script.podTemplate(
             label: podLabel,
-            cloud: 'openshift',
+            cloud: 'kubernetes',
             containers: config.podContainers,
             volumes: config.podVolumes,
             serviceAccount: config.podServiceAccount,
