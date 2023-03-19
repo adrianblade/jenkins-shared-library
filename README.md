@@ -1,6 +1,6 @@
 <div align="center">
   <h1>🦝 Rocket: Jenkins Shared Library 🦝</h1>
-  <strong>The path to increasing your productivity on macOS, Linux and WSL</strong>
+  <strong></strong>
 </div>
 <br>
 
