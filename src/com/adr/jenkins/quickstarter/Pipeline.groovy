@@ -33,7 +33,8 @@ class Pipeline implements Serializable {
         // config options
         if (!config.sourceDir) {
             // Extract folder name from e.g. "be-golang-plain/Jenkinsfile"
-            def jenkinsfilePath = script.currentBuild?.rawBuild?.parent?.definition?.scriptPath.toString()
+            //def jenkinsfilePath = script.currentBuild?.rawBuild?.parent?.definition?.scriptPath.toString()
+            def jenkinsfilePath = "be-golang-plain/Jenkinsfile"
             def jenkinsfilePathParts = jenkinsfilePath.split('/')
             if (jenkinsfilePathParts.size() >= 2) {
                 config.sourceDir = jenkinsfilePathParts[-2]
