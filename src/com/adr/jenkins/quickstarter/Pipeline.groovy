@@ -53,13 +53,13 @@ class Pipeline implements Serializable {
         if (!config.podVolumes) {
             config.podVolumes = []
         }
-        if (!config.annotations) {
+        /*if (!config.annotations) {
             config.annotations = [
                 script.podAnnotation(
                     key: 'cluster-autoscaler.kubernetes.io/safe-to-evict', value: 'false'
                     )
                 ]
-        }
+        }*/
 
         // vars from jenkins master
         script.node {
