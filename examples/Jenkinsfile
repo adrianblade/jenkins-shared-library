@@ -7,13 +7,11 @@ def imageTag = env.IMAGE_TAG ?: 'latest'
 quickstarterPipeline(
   imageStreamTag: "gradle:latest",
   compiler: "gradle",
-  gitUrlHttp: "https://github.com/adrianblade/sample-java.git"
+  gitUrlHttp: "<"
 ) { context ->
 
   stage('Write something') {
-    dir(context.targetDir) {
       sh "echo hi!"
-    }
   }
 
   //compileProject(context)

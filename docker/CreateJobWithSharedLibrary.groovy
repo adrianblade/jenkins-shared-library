@@ -21,9 +21,7 @@ quickstarterPipeline(
 ) { context ->
 
   stage('Write something') {
-    dir(context.targetDir) {
       sh "echo hi!"
-    }
   }
 
   //compileProject(context)
