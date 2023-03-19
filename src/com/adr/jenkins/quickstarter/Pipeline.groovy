@@ -71,7 +71,7 @@ class Pipeline implements Serializable {
         }
 
         onAgentNode(config) { context ->
-            new CheckoutStage(script, context).execute()
+            new CheckoutStage(script, context, config).execute()
             
             // Execute user-defined stages.
             block(context)
