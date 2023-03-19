@@ -9,8 +9,6 @@ class CheckoutStage extends Stage {
     }
 
     def run() {
-        script.sh "echo ${config}"
-        script.sh "echo ${context}"
         script.checkout([
             $class: 'GitSCM', 
             branches: [[name: '*/master']], 
