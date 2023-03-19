@@ -11,7 +11,7 @@ def globalLibrariesParameters = [
         branch:               "main",
         credentialId:         null,
         implicit:             false,
-        name:                 "Your Global Shared Library name here",
+        name:                 "adrianblade-jenkins",
         repository:           "https://github.com/adrianblade/jenkins-shared-library.git"
 ]
 

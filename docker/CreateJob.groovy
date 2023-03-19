@@ -28,7 +28,19 @@ extensions = []
 GitSCM scm = new GitSCM([userRemoteConfig], branches, doGenerateSubmoduleConfigurations, submoduleCfg, browser, gitTool, extensions)
 
 // Create the workflow
-FlowDefinition flowDefinition = (FlowDefinition) new CpsFlowDefinition("oh my doog", true)
+FlowDefinition flowDefinition = (FlowDefinition) new CpsFlowDefinition("""
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+""", true)
 
 // Check if the job already exists
  Object job = jenkins.createProject(WorkflowJob, jobName)

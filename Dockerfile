@@ -1,6 +1,6 @@
-FROM jenkins/jenkins:lts-jdk11
+FROM jenkins/jenkins:latest
 
-RUN jenkins-plugin-cli --plugins "git job-dsl kubernetes pipeline-groovy-lib saml ssh-slaves workflow-multibranch"
+RUN jenkins-plugin-cli --plugins "git job-dsl pipeline-groovy-lib workflow-multibranch workflow-job workflow-aggregator pipeline-stage-view"
 
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
@@ -8,6 +8,7 @@ ENV JENKINS_PASS admin
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 
 COPY docker/SharedLibraries.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY docker/CreateJobWithSharedLibrary.groovy /usr/share/jenkins/ref/init.groovy.d/
 COPY docker/CreateJob.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 VOLUME /var/jenkins_home

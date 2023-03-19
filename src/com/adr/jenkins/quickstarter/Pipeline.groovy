@@ -18,7 +18,7 @@ class Pipeline implements Serializable {
     @SuppressWarnings(['AbcMetric', 'UnnecessaryObjectReferences'])
     def execute(Closure block) {
         // build params
-        checkRequiredBuildParams()
+        //checkRequiredBuildParams()
         config.odsNamespace = script.env.ODS_NAMESPACE ?: 'ods'
         config.odsImageTag = script.env.ODS_IMAGE_TAG ?: 'latest'
         config.odsGitRef = script.env.ODS_GIT_REF ?: 'master'
