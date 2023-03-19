@@ -141,6 +141,12 @@ class Pipeline implements Serializable {
                 block(context)
             }
         }*/
+
+        //DELETE
+        script.node(podLabel) {
+                IContext context = new Context(config)
+                block(context)
+            }
     }
 
 }
