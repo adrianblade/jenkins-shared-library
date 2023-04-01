@@ -14,7 +14,7 @@ class CompilerStage extends Stage {
     }
 
     def run() {
-        def tasks = compiler.build(command: 'executeMe', configFileId: config.configFileId)
+        def tasks = compiler.build(command: config.command, configFileId: config.configFileId)
         tasks.closure()
     }
 

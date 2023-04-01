@@ -15,7 +15,8 @@ class CompileProjectSpec extends PipelineSpockTestBase {
     ]
     IContext context = new Context(config)
     def configuration = [
-            configFileId: 'abcd'
+            configFileId: 'abcd',
+            command: './gradlew build'
     ]
 
     when:

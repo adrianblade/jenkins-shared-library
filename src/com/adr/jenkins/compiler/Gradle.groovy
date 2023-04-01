@@ -46,7 +46,10 @@ class Gradle implements Serializable, Compiler {
     }
 
     def runWithTemplateSetup(Map args) {
-        script.configFileProvider(
+        def gradleHome = gradleHome()
+            script.sh(script: "mv ${gradleHome}@tmp/config* ${gradleHome}@tmp/gradle.properties")
+            script.sh(script: "${args.command.trim()} ${gradleHomeParameter(gradleHome)}")
+        /*script.configFileProvider(
             [
                 script.configFile(fileId: args.configFileId, variable: 'GRADLE_PROPERTIES')
             ]
@@ -54,7 +57,7 @@ class Gradle implements Serializable, Compiler {
             def gradleHome = gradleHome()
             script.sh(script: "mv ${gradleHome}@tmp/config* ${gradleHome}@tmp/gradle.properties")
             script.sh(script: "${args.command.trim()} ${gradleHomeParameter(gradleHome)}")
-        }
+        }*/
     }
 
     private def gradleHome(){

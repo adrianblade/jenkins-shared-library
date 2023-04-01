@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:latest
 
-RUN jenkins-plugin-cli --plugins "git job-dsl pipeline-groovy-lib workflow-multibranch workflow-job workflow-aggregator pipeline-stage-view"
+RUN jenkins-plugin-cli --plugins "git job-dsl pipeline-groovy-lib workflow-multibranch workflow-job workflow-aggregator pipeline-stage-view config-file-provider"
 
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
