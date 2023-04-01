@@ -144,8 +144,10 @@ class Pipeline implements Serializable {
 
         //DELETE
         script.node() {
-            IContext context = new Context(config)
-            block(context)
+            docker.image(${config.imageStreamTag}).withRun() { c ->
+                IContext context = new Context(config)
+                block(context)
+            }
         }
     }
 
