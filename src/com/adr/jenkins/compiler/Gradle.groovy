@@ -59,7 +59,6 @@ class Gradle implements Serializable, Compiler {
 
     private def runCommand(Map args) {
         def gradleHome = gradleHome()
-        script.sh(script: "mv ${gradleHome}@tmp/config* ${gradleHome}@tmp/gradle.properties")
         script.sh(script: "${args.command.trim()} ${gradleHomeParameter(gradleHome)}")
     }
 
