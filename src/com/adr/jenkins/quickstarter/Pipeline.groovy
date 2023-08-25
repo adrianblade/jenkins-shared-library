@@ -149,7 +149,7 @@ class Pipeline implements Serializable {
             script.docker.image(phase.dockerImage).inside() {
                 IContext context = new Context(config)
                 block(context)
-            //}
+            }
         }
     }
 
