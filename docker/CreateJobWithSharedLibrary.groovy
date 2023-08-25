@@ -20,7 +20,12 @@ quickstarterPipeline(
   gitUrlHttp: "https://github.com/adrianblade/sample-java.git"
 ) { context ->
 
-  compileProject(context, [command: "./gradlew build", configFileId: null])
+  stage('Write something') {
+      sh "echo hi!"
+  }
+
+  config = [command: "./gradlew build", configFileId: null]
+  compileProject(context, config)
 
 }
 """, true)
