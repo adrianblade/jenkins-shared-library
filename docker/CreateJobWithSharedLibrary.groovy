@@ -24,8 +24,7 @@ quickstarterPipeline(
       sh "echo hi!"
   }
 
-  config = [command: "./gradlew build", configFileId: null]
-  compileProject(context, config)
+  compileProject(context, [command: "./gradlew build", configFileId: null])
 
 }
 """, true)
