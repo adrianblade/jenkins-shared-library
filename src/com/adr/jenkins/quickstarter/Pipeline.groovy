@@ -148,6 +148,7 @@ class Pipeline implements Serializable {
         debugLog("Running in docker image ${config.imageStreamTag}")
         
         script.node() {    
+            debugLog("Running in docker image ${config.imageStreamTag}")
             script.docker.image("gradle:latest").inside() {
                 IContext context = new Context(config)
                 block(context)
