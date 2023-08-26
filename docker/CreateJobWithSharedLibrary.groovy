@@ -30,6 +30,11 @@ quickstarterPipeline(
   config = [command: "./gradlew test", configFileId: null]
   unitTest(context, config)
 
+  analyzeCode(context, [])
+  analyzeSecurity(context, [])
+  buildAndPush(context, [])
+  deploy(context, [])
+
 }
 """, true)
 
