@@ -148,7 +148,6 @@ class Pipeline implements Serializable {
         debugLog("Running in docker image ${config.imageStreamTag}")
         
         script.node() {    
-            debugLog("Running in docker image ${config.imageStreamTag}")
             script.docker.image("${config.imageStreamTag}").inside() {
                 IContext context = new Context(config)
                 block(context)
@@ -158,10 +157,6 @@ class Pipeline implements Serializable {
 
     private def debugLog(String msg) {
         return script.echo("DEBUG: ${msg}")
-    }
-
-    protected void inDocker(String imageId, Closure closure) {
-        
     }
 
 }
