@@ -25,7 +25,10 @@ quickstarterPipeline(
   }
 
   config = [command: "./gradlew build", configFileId: null]
-  compileProject(context, config)
+  compile(context, config)
+
+  config = [command: "./gradlew test", configFileId: null]
+  unitTest(context, config)
 
 }
 """, true)

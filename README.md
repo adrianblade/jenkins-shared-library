@@ -10,7 +10,19 @@
 
 ```bash
     ~ docker run -it -e JAVA_OPTS="-Djenkins.install.runSetupWizard=false" -p 8080:8080 jenkins/jenkins:latest
-    ~ docker build -t jenkins:test . && docker run -it -p 8080:8080 jenkins:test
+    ~ docker build -t jenkins:test . && docker run -it -v /var/run/docker.sock:/var/run/docker.sock -p 8080:8080 jenkins:test
+
+    docker build -t jenkins:test . && docker run \
+      --name jenkins \
+      --restart=on-failure \
+      --detach \
+      --network jenkins \
+      --env DOCKER_HOST=tcp://docker:2376 \
+      --env DOCKER_CERT_PATH=/certs/client \
+      --env DOCKER_TLS_VERIFY=1 \
+      --publish 8080:8080 \
+      --publish 50000:50000 \
+      jenkins:test
 ```
 
 https://github.com/adrianblade/jenkins-shared-library.git

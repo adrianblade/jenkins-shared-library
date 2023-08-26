@@ -5,7 +5,7 @@ import com.adr.jenkins.quickstarter.IContext
 import vars.test_helper.PipelineSpockTestBase
 import spock.lang.*
 
-class CompileProjectSpec extends PipelineSpockTestBase {
+class CompileSpec extends PipelineSpockTestBase {
 
   def "run successfully"() {
     given:
@@ -20,7 +20,7 @@ class CompileProjectSpec extends PipelineSpockTestBase {
     ]
 
     when:
-    def script = loadScript('vars/compileProject.groovy')
+    def script = loadScript('vars/compile.groovy')
     script.call(context, configuration)
 
     then:
