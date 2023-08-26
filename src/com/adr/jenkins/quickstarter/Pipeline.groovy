@@ -145,7 +145,7 @@ class Pipeline implements Serializable {
         //DELETE
         debugLog("Running in docker image ${config.imageStreamTag}")
         
-        script.node() {
+        script.node('docker') {
             script.sh "docker ps"
 
             inDocker(${config.imageStreamTag}) {
@@ -164,9 +164,8 @@ class Pipeline implements Serializable {
     }
 
     protected void inDocker(String imageId, Closure closure) {
-        docker.image(imageId)
-                .mountDockerSocket(enableDockerHost)
-                .inside(createDockerRunArgs()) {
+        script.docker.image(imageId)
+                .inside() {
                     closure.call()
                 }
     }
