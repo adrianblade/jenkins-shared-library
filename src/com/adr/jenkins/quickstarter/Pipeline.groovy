@@ -147,7 +147,7 @@ class Pipeline implements Serializable {
         
         script.node() {
             script.sh "docker ps"
-            docker.image('projectatomic/dockerfile-lint:latest').inside({
+            script.docker.image(${config.imageStreamTag}).inside({
                 sh "echo hello"
             })
             //script.docker.image(${config.imageStreamTag}).withRun() { c ->
