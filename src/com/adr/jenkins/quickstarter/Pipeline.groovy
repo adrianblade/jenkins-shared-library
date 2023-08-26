@@ -150,7 +150,7 @@ class Pipeline implements Serializable {
         script.node() {
             script.sh "docker ps"
         try {
-            script.docker.image(${config.imageStreamTag}).inside("") {
+            script.docker.image("gradle:latest").inside("") {
                     script.echo "Inside docker..."
             }
         } finally {
