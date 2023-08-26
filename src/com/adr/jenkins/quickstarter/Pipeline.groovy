@@ -144,10 +144,11 @@ class Pipeline implements Serializable {
 
         //DELETE
         debugLog("Running in docker image ${config.imageStreamTag}")
-        script.node() {
-            script.docker.image(${config.imageStreamTag}).inside() {
+        script.docker.image(${config.imageStreamTag}).inside() {
                 script.sh "echo hola"
             }
+        script.node() {
+            
             //script.docker.image(${config.imageStreamTag}).withRun() { c ->
                 IContext context = new Context(config)
                 block(context)
