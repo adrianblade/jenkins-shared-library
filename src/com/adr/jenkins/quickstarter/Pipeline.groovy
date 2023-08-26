@@ -150,8 +150,8 @@ class Pipeline implements Serializable {
         script.node() {
             script.sh "docker ps"
         try {
-            inDocker(${config.imageStreamTag}) {
-                script.echo "Inside docker..."
+            script.docker.image(imageId).inside("") {
+                    script.echo "Inside docker..."
             }
         } finally {
             script.echo "Return from docker"
@@ -169,10 +169,7 @@ class Pipeline implements Serializable {
     }
 
     protected void inDocker(String imageId, Closure closure) {
-        script.docker.image(imageId)
-                .inside("") {
-                    closure.call()
-                }
+        
     }
 
 }
