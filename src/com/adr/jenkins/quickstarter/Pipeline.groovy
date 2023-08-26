@@ -150,7 +150,7 @@ class Pipeline implements Serializable {
         script.node() {
             script.sh "docker ps"
         try {
-            script.docker.image("node:18.17.1-alpine3.18").inside("") {
+            script.docker.image(${config.imageStreamTag}).inside("") {
                     script.echo "Inside docker..."
             }
         } finally {
