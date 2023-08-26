@@ -148,8 +148,8 @@ class Pipeline implements Serializable {
         script.node() {
             script.sh "docker ps"
 
-            script.docker.image(${config.imageStreamTag}).inside() {
-                sh "echo hola"
+            inDocker(${config.imageStreamTag}) {
+                sh("echo hola", printStdOut)
             }
             
             script.docker.image(${config.imageStreamTag}).inside() {
@@ -161,7 +161,14 @@ class Pipeline implements Serializable {
 
     private def debugLog(String msg) {
         return script.echo("DEBUG: ${msg}")
-        
+    }
+
+    protected void inDocker(String imageId, Closure closure) {
+        docker.image(imageId)
+                .mountDockerSocket(enableDockerHost)
+                .inside(createDockerRunArgs()) {
+                    closure.call()
+                }
     }
 
 }
