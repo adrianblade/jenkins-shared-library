@@ -2,6 +2,8 @@ package com.adr.jenkins.quickstarter
 
 import com.adr.jenkins.util.Logger
 import com.adr.jenkins.util.ILogger
+import org.jenkinsci.plugins.docker.workflow.*
+
 
 class Pipeline implements Serializable {
 
@@ -147,10 +149,13 @@ class Pipeline implements Serializable {
         
         script.node() {
             script.sh "docker ps"
-
+        try {
             inDocker(${config.imageStreamTag}) {
-                sh("echo hola", printStdOut)
+                script.echo "Inside docker..."
             }
+        } finally {
+            script.echo "Return from docker"
+        }
             
             script.docker.image(${config.imageStreamTag}).inside() {
                 IContext context = new Context(config)
@@ -165,7 +170,7 @@ class Pipeline implements Serializable {
 
     protected void inDocker(String imageId, Closure closure) {
         script.docker.image(imageId)
-                .inside() {
+                .inside("") {
                     closure.call()
                 }
     }
