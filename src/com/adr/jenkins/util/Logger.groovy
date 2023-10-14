@@ -27,7 +27,7 @@ class Logger implements ILogger, Serializable {
     }
 
     String info(String message) {
-        script.echo message
+        script.echo "${message}"
         message
     }
 
